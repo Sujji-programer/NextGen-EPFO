@@ -1,0 +1,6 @@
+{
+  "name": "NextGen EPFO",
+  "description": "Citizen-first prototype for seamless PF claims, rejection risk diagnostics, e-nomination, and smart EPFO services with gpt Help.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
