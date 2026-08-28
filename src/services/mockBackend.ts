@@ -434,13 +434,17 @@ export const MockBackend = {
     persona.profile.employment.doe = '30-Apr-2024';
     persona.profile.employment.exitDateUpdated = true;
 
-    // 5. Mark all fixable issues as fixed
-    persona.issues = (persona.issues || []).map((i) => {
-      if (i.id !== 'dob_mismatch_major' && i.id !== 'service_overlap') {
-        return { ...i, fixed: true };
-      }
-      return i;
-    });
+// 5. Mark every resolvable issue as fixed. The two critical issues remain manual blockers.
+  persona.issues = (persona.issues || []).map((i) => {
+  if (i.id !== 'dob_mismatch_major' && i.id !== 'service_overlap') {
+  return { ...i, fixed: true };
+  }
+  return i;
+  });
+  // Auto-fix reconciles every supported validation check, including document quality.
+  persona.profile.chequeStatus = 'valid';
+  persona.profile.chequeFileName = persona.profile.chequeFileName || 'DigiLocker_Certified_Cheque.jpg';
+  persona.profile.chequeSource = persona.profile.chequeSource || 'digilocker';
 
     // 6. Update Mandatory KYC checks
     persona.mandatoryChecks = (persona.mandatoryChecks || []).map((c) => {

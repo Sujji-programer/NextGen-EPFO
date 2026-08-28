@@ -177,10 +177,10 @@ export const INITIAL_PERSONAS: Record<string, Persona> = {
       {
         id: 'doc_quality',
         name: 'Bank Cheque / Passbook Quality',
-        status: 'warning',
-        statusLabel: 'Pending DigiLocker Fetch / Upload',
-        details: 'Cancelled cheque / bank passbook not yet linked. Fetch via DigiLocker or upload scanned copy.',
-        canAutoFix: true,
+status: 'passed',
+        statusLabel: 'Verified (DigiLocker Certified Cheque)',
+        details: 'Certified cancelled cheque is already linked and verified.',
+        canAutoFix: false,
       },
     ],
     balance: {

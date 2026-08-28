@@ -232,6 +232,8 @@ export const ClaimDoctorView: React.FC<ClaimDoctorViewProps> = ({
   // Mandatory checks audit
   const checks: MandatoryKycCheck[] = currentPersona.mandatoryChecks || [];
   const failingChecks = checks.filter((c) => c.status !== 'passed');
+  const unresolvedIssues = (currentPersona.issues || []).filter((issue) => !issue.fixed);
+  const validationPassed = failingChecks.length === 0 && unresolvedIssues.length === 0;
 
   // KYC Diagnostics Drawer State
   const [isDiagnosticsDrawerOpen, setIsDiagnosticsDrawerOpen] = useState<boolean>(false);
@@ -1027,7 +1029,7 @@ export const ClaimDoctorView: React.FC<ClaimDoctorViewProps> = ({
                   <Sparkles className="w-3.5 h-3.5 text-amber-300" />
                   <span>Auto-fill with DigiLocker to Proceed</span>
                 </button>
-              ) : failingChecks.length > 0 ? (
+              ) : !validationPassed ? (
                 <div className="flex flex-wrap items-center gap-2">
                   <button
                     type="button"
